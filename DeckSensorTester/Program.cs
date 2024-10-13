@@ -1,3 +1,7 @@
+using System;
+using System.Net;
+using System.Net.Sockets;
+
 namespace DeckSensorTester
 {
     internal static class Program

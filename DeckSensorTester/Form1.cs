@@ -1,11 +1,16 @@
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
 namespace DeckSensorTester
 {
     public partial class Form1 : Form
     {
         int udpListenPort = 41001;
         int udpSendPort = 41501;
-        string ipAddress = "192.168.1.100";
+        string strIpAddress = "192.168.1.100";
         bool isListening = false;
+        IPAddress dsIpAddress;
 
         public Form1()
         {
@@ -14,7 +19,7 @@ namespace DeckSensorTester
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            txtBoxIpAddress.Text = ipAddress;
+            txtBoxIpAddress.Text = strIpAddress;
             txtBoxListenPort.Text = udpListenPort.ToString();
             txtBoxSendPort.Text = udpSendPort.ToString();
             radioBtnPreset1.Checked = true;
@@ -22,11 +27,13 @@ namespace DeckSensorTester
 
         private void btnListen_Click(object sender, EventArgs e)
         {
-            ipAddress = txtBoxIpAddress.Text;
+            strIpAddress = txtBoxIpAddress.Text;
 
             if (isListening)
             {
                 isListening = false;
+                btnListen.Text = "Listen";
+
             }
 
             else
@@ -44,11 +51,46 @@ namespace DeckSensorTester
                     {
                         MessageBox.Show("Send Port Value must be between 1 an 65535");
                     }
+
+                    dsIpAddress = IPAddress.Parse(strIpAddress);
+
+                    StartListener();
+
+                    bool debugpausehere = true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void StartListener()
+        {
+            UdpClient listener = new UdpClient(udpListenPort);
+            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpListenPort);
+
+            try
+            {
+                while (true)
+                {
+                    //Console.WriteLine("Waiting for broadcast");
+                    byte[] recvBytes = listener.Receive(ref groupEP);
+                    txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + \r\n;
+                    MessageBox.Show("Data Received");
+
+                    //Console.WriteLine($"Received broadcast from {groupEP} :");
+                    //Console.WriteLine($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
+                }
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                listener.Close();
+                MessageBox.Show("Listener Closed");
             }
         }
 
