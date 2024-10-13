@@ -76,7 +76,7 @@ namespace DeckSensorTester
                 {
                     //Console.WriteLine("Waiting for broadcast");
                     byte[] recvBytes = listener.Receive(ref groupEP);
-                    txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + \r\n;
+                    txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + "\r\n";
                     MessageBox.Show("Data Received");
 
                     //Console.WriteLine($"Received broadcast from {groupEP} :");
