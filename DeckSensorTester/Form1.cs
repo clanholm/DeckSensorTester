@@ -6,9 +6,10 @@ namespace DeckSensorTester
 {
     public partial class Form1 : Form
     {
-        int udpListenPort = 41001;
-        int udpSendPort = 41501;
-        string strIpAddress = "192.168.1.100";
+        int udpListenPort = 42507;
+        int udpSendPort = 42071;
+        int unitId = 7;
+        string strIpAddress = "10.20.78.181";
         bool isListening = false;
         IPAddress dsIpAddress;
 
@@ -22,6 +23,7 @@ namespace DeckSensorTester
             txtBoxIpAddress.Text = strIpAddress;
             txtBoxListenPort.Text = udpListenPort.ToString();
             txtBoxSendPort.Text = udpSendPort.ToString();
+            txtBoxUnitId.Text = unitId.ToString();
             radioBtnPreset1.Checked = true;
         }
 

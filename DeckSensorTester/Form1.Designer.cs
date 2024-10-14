@@ -53,6 +53,8 @@
             btnZoneStat3 = new Button();
             btnZoneStat2 = new Button();
             btnZoneStat1 = new Button();
+            txtBoxUnitId = new TextBox();
+            lblUnitId = new Label();
             groupBoxCommSettings.SuspendLayout();
             groupBoxPresets.SuspendLayout();
             grpBoxZoneStatus.SuspendLayout();
@@ -60,6 +62,8 @@
             // 
             // groupBoxCommSettings
             // 
+            groupBoxCommSettings.Controls.Add(txtBoxUnitId);
+            groupBoxCommSettings.Controls.Add(lblUnitId);
             groupBoxCommSettings.Controls.Add(btnListen);
             groupBoxCommSettings.Controls.Add(txtBoxSendPort);
             groupBoxCommSettings.Controls.Add(txtBoxListenPort);
@@ -77,9 +81,9 @@
             // 
             // btnListen
             // 
-            btnListen.Location = new Point(16, 151);
+            btnListen.Location = new Point(16, 181);
             btnListen.Name = "btnListen";
-            btnListen.Size = new Size(299, 57);
+            btnListen.Size = new Size(299, 45);
             btnListen.TabIndex = 6;
             btnListen.Text = "Start Listening";
             btnListen.UseVisualStyleBackColor = true;
@@ -332,6 +336,24 @@
             btnZoneStat1.Text = "1";
             btnZoneStat1.UseVisualStyleBackColor = false;
             // 
+            // txtBoxUnitId
+            // 
+            txtBoxUnitId.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBoxUnitId.Location = new Point(132, 145);
+            txtBoxUnitId.Name = "txtBoxUnitId";
+            txtBoxUnitId.Size = new Size(183, 26);
+            txtBoxUnitId.TabIndex = 8;
+            // 
+            // lblUnitId
+            // 
+            lblUnitId.AutoSize = true;
+            lblUnitId.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUnitId.Location = new Point(68, 148);
+            lblUnitId.Name = "lblUnitId";
+            lblUnitId.Size = new Size(56, 19);
+            lblUnitId.TabIndex = 7;
+            lblUnitId.Text = "Unit ID";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -384,5 +406,7 @@
         private Button btnZoneStat6;
         private Button btnZoneStat5;
         private Button btnZoneStat4;
+        private TextBox txtBoxUnitId;
+        private Label lblUnitId;
     }
 }
