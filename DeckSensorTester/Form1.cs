@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Text;
 
 namespace DeckSensorTester
@@ -34,8 +35,9 @@ namespace DeckSensorTester
             if (isListening)
             {
                 isListening = false;
-                btnListen.Text = "Listen";
-
+                btnListen.Text = "Start Listening";
+                backgroundWorker1.CancelAsync();
+                MessageBox.Show("Worker Stopping");
             }
 
             else
@@ -56,9 +58,13 @@ namespace DeckSensorTester
 
                     dsIpAddress = IPAddress.Parse(strIpAddress);
 
-                    StartListener();
-
-                    bool debugpausehere = true;
+                    if (!backgroundWorker1.IsBusy)
+                    {
+                        isListening = true;
+                        backgroundWorker1.RunWorkerAsync();
+                        btnListen.Text = "Stop Listening";
+                        MessageBox.Show("Worker Staring");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -67,34 +73,34 @@ namespace DeckSensorTester
             }
         }
 
-        private void StartListener()
-        {
-            UdpClient listener = new UdpClient(udpListenPort);
-            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpListenPort);
+        //private void StartListener()
+        //{
+        //    UdpClient listener = new UdpClient(udpListenPort);
+        //    IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpListenPort);
 
-            try
-            {
-                while (true)
-                {
-                    //Console.WriteLine("Waiting for broadcast");
-                    byte[] recvBytes = listener.Receive(ref groupEP);
-                    txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + "\r\n";
-                    MessageBox.Show("Data Received");
+        //    try
+        //    {
+        //        while (true)
+        //        {
+        //            //Console.WriteLine("Waiting for broadcast");
+        //            byte[] recvBytes = listener.Receive(ref groupEP);
+        //            txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + "\r\n";
+        //            MessageBox.Show("Data Received");
 
-                    //Console.WriteLine($"Received broadcast from {groupEP} :");
-                    //Console.WriteLine($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
-                }
-            }
-            catch (SocketException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                listener.Close();
-                MessageBox.Show("Listener Closed");
-            }
-        }
+        //            //Console.WriteLine($"Received broadcast from {groupEP} :");
+        //            //Console.WriteLine($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
+        //        }
+        //    }
+        //    catch (SocketException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        listener.Close();
+        //        MessageBox.Show("Listener Closed");
+        //    }
+        //}
 
         private void txtBoxIpAddress_TextChanged(object sender, EventArgs e)
         {
@@ -119,6 +125,29 @@ namespace DeckSensorTester
                 MessageBox.Show("Please enter only numbers.");
                 txtBoxSendPort.Text = txtBoxSendPort.Text.Remove(txtBoxSendPort.Text.Length - 1);
             }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            UdpClient listener = new UdpClient(udpListenPort);
+            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpListenPort);
+
+            while (isListening)
+            {
+                byte[] recvBytes = listener.Receive(ref groupEP);
+
+                this.Invoke(new MethodInvoker(delegate { txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + "\r\n"; }));
+
+                //txtBoxReceivedData.Text += Convert.ToHexString(recvBytes) + "\r\n";                
+            }
+
+            listener.Close();
+            MessageBox.Show("BW Listener Close");
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            isListening = false;
         }
     }
 }

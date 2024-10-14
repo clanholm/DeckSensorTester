@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBoxCommSettings = new GroupBox();
+            txtBoxUnitId = new TextBox();
+            lblUnitId = new Label();
             btnListen = new Button();
             txtBoxSendPort = new TextBox();
             txtBoxListenPort = new TextBox();
@@ -53,8 +55,7 @@
             btnZoneStat3 = new Button();
             btnZoneStat2 = new Button();
             btnZoneStat1 = new Button();
-            txtBoxUnitId = new TextBox();
-            lblUnitId = new Label();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             groupBoxCommSettings.SuspendLayout();
             groupBoxPresets.SuspendLayout();
             grpBoxZoneStatus.SuspendLayout();
@@ -78,6 +79,24 @@
             groupBoxCommSettings.TabIndex = 0;
             groupBoxCommSettings.TabStop = false;
             groupBoxCommSettings.Text = "Comm Settings";
+            // 
+            // txtBoxUnitId
+            // 
+            txtBoxUnitId.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBoxUnitId.Location = new Point(132, 145);
+            txtBoxUnitId.Name = "txtBoxUnitId";
+            txtBoxUnitId.Size = new Size(183, 26);
+            txtBoxUnitId.TabIndex = 8;
+            // 
+            // lblUnitId
+            // 
+            lblUnitId.AutoSize = true;
+            lblUnitId.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUnitId.Location = new Point(68, 148);
+            lblUnitId.Name = "lblUnitId";
+            lblUnitId.Size = new Size(56, 19);
+            lblUnitId.TabIndex = 7;
+            lblUnitId.Text = "Unit ID";
             // 
             // btnListen
             // 
@@ -336,23 +355,11 @@
             btnZoneStat1.Text = "1";
             btnZoneStat1.UseVisualStyleBackColor = false;
             // 
-            // txtBoxUnitId
+            // backgroundWorker1
             // 
-            txtBoxUnitId.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBoxUnitId.Location = new Point(132, 145);
-            txtBoxUnitId.Name = "txtBoxUnitId";
-            txtBoxUnitId.Size = new Size(183, 26);
-            txtBoxUnitId.TabIndex = 8;
-            // 
-            // lblUnitId
-            // 
-            lblUnitId.AutoSize = true;
-            lblUnitId.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUnitId.Location = new Point(68, 148);
-            lblUnitId.Name = "lblUnitId";
-            lblUnitId.Size = new Size(56, 19);
-            lblUnitId.TabIndex = 7;
-            lblUnitId.Text = "Unit ID";
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
             // Form1
             // 
@@ -408,5 +415,6 @@
         private Button btnZoneStat4;
         private TextBox txtBoxUnitId;
         private Label lblUnitId;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
