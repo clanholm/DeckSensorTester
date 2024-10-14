@@ -73,35 +73,6 @@ namespace DeckSensorTester
             }
         }
 
-        //private void StartListener()
-        //{
-        //    UdpClient listener = new UdpClient(udpListenPort);
-        //    IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpListenPort);
-
-        //    try
-        //    {
-        //        while (true)
-        //        {
-        //            //Console.WriteLine("Waiting for broadcast");
-        //            byte[] recvBytes = listener.Receive(ref groupEP);
-        //            txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + "\r\n";
-        //            MessageBox.Show("Data Received");
-
-        //            //Console.WriteLine($"Received broadcast from {groupEP} :");
-        //            //Console.WriteLine($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
-        //        }
-        //    }
-        //    catch (SocketException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        listener.Close();
-        //        MessageBox.Show("Listener Closed");
-        //    }
-        //}
-
         private void txtBoxIpAddress_TextChanged(object sender, EventArgs e)
         {
             // ipAddress = txtBoxIpAddress.Text;
