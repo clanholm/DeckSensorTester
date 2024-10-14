@@ -240,6 +240,7 @@
             txtBoxSentData.Multiline = true;
             txtBoxSentData.Name = "txtBoxSentData";
             txtBoxSentData.ReadOnly = true;
+            txtBoxSentData.ScrollBars = ScrollBars.Vertical;
             txtBoxSentData.Size = new Size(761, 207);
             txtBoxSentData.TabIndex = 4;
             // 
@@ -250,6 +251,7 @@
             txtBoxRecveivedData.Multiline = true;
             txtBoxRecveivedData.Name = "txtBoxRecveivedData";
             txtBoxRecveivedData.ReadOnly = true;
+            txtBoxRecveivedData.ScrollBars = ScrollBars.Vertical;
             txtBoxRecveivedData.Size = new Size(761, 207);
             txtBoxRecveivedData.TabIndex = 5;
             // 

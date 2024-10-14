@@ -8,7 +8,7 @@ namespace DeckSensorTester
     public partial class Form1 : Form
     {
         int udpListenPort = 42507;
-        int udpSendPort = 42071;
+        int udpSendPort = 42007;
         int unitId = 7;
         string strIpAddress = "10.20.78.181";
         bool isListening = false;
@@ -98,6 +98,20 @@ namespace DeckSensorTester
             }
         }
 
+        private void parseReceivedData(byte[] dataReceived)
+        {
+            int dataLength = dataReceived.Length;
+            int dataType = dataReceived[2]; // 0x65(Dec 101)=Preset | 0x6A(Dec 106)=Zone Status
+            
+            for (int i = 0; i < dataLength; i++)
+            {
+                int byteToSend = dataReceived[i];
+                txtBoxRecveivedData.Text += byteToSend.ToString("X2") + " ";
+            }
+            
+            txtBoxRecveivedData.Text += "\r\n";
+        }
+
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             UdpClient listener = new UdpClient(udpListenPort);
@@ -107,9 +121,7 @@ namespace DeckSensorTester
             {
                 byte[] recvBytes = listener.Receive(ref groupEP);
 
-                this.Invoke(new MethodInvoker(delegate { txtBoxRecveivedData.Text += Convert.ToHexString(recvBytes) + "\r\n"; }));
-
-                //txtBoxReceivedData.Text += Convert.ToHexString(recvBytes) + "\r\n";                
+                this.Invoke(new MethodInvoker(delegate { parseReceivedData(recvBytes); }));
             }
 
             listener.Close();
