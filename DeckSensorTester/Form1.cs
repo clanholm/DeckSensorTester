@@ -13,7 +13,6 @@ namespace DeckSensorTester
         int unitId = 7;
         string strIpAddress = "10.20.78.181";
         bool isListening = false;
-        //IPAddress dsIpAddress;
         const int ALARM = 2;
         const int NORMAL = 1;
         const int TROUBLE = 99;
@@ -66,8 +65,6 @@ namespace DeckSensorTester
                         MessageBox.Show("Send Port Value must be between 1 an 65535");
                     }
 
-                    //dsIpAddress = IPAddress.Parse(strIpAddress);
-
                     if (!backgroundWorker1.IsBusy)
                     {
                         isListening = true;
@@ -76,7 +73,6 @@ namespace DeckSensorTester
                         btnListen.BackColor = Color.LightGreen;
                         btnGetPresets.Enabled = true;
                         btnGetZoneStatus.Enabled = true;    
-                        // MessageBox.Show("Worker Staring");
                     }
                 }
                 catch (Exception ex)
@@ -88,12 +84,11 @@ namespace DeckSensorTester
 
         private void txtBoxIpAddress_TextChanged(object sender, EventArgs e)
         {
-            // ipAddress = txtBoxIpAddress.Text;
+            
         }
 
         private void txtBoxListenPort_TextChanged(object sender, EventArgs e)
         {
-            // udpListenPort = int.Parse(txtBoxListenPort.Text);
             if (System.Text.RegularExpressions.Regex.IsMatch(txtBoxListenPort.Text, "[^0-9]"))
             {
                 MessageBox.Show("Please enter only numbers.");
@@ -103,7 +98,6 @@ namespace DeckSensorTester
 
         private void txtBoxSendPort_TextChanged(object sender, EventArgs e)
         {
-            // udpSendPort = int.Parse(txtBoxSendPort.Text);
             if (System.Text.RegularExpressions.Regex.IsMatch(txtBoxSendPort.Text, "[^0-9]"))
             {
                 MessageBox.Show("Please enter only numbers.");
