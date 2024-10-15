@@ -40,8 +40,9 @@ namespace DeckSensorTester
             {
                 isListening = false;
                 btnListen.Text = "Start Listening";
+                btnListen.BackColor = Color.LightGray;
                 backgroundWorker1.CancelAsync();
-                MessageBox.Show("Worker Stopping");
+                // MessageBox.Show("Worker Stopping");
             }
 
             else
@@ -67,7 +68,8 @@ namespace DeckSensorTester
                         isListening = true;
                         backgroundWorker1.RunWorkerAsync();
                         btnListen.Text = "Stop Listening";
-                        MessageBox.Show("Worker Staring");
+                        btnListen.BackColor = Color.LightGreen;
+                        // MessageBox.Show("Worker Staring");
                     }
                 }
                 catch (Exception ex)
@@ -115,7 +117,7 @@ namespace DeckSensorTester
             
             txtBoxRecveivedData.Text += "\r\n";
 
-            if (dataType == 106)
+            if (dataType == 106) // Zone Status
             {
                 int id = dataReceived[5];
                 int zoneNumber = dataReceived[11]+1;
@@ -123,6 +125,32 @@ namespace DeckSensorTester
                 if(unitId == id)
                 {
                     updateZoneStatus(zoneNumber, zoneStat);
+                }
+            }
+            else if(dataType == 101) // Preset Status
+            {
+                int preset = dataReceived[3] + 1;
+                
+                switch(preset)
+                {
+                    case 1:
+                        radioBtnPreset1.Checked = true;
+                        break;
+
+                    case 2:
+                        radioBtnPreset2.Checked = true;
+                        break;
+
+                    case 3:
+                        radioBtnPreset3.Checked = true;
+                        break;
+
+                    case 4:
+                        radioBtnPreset4.Checked = true;
+                        break;
+
+                    default:
+                        break;
                 }
             }
         }
@@ -239,7 +267,7 @@ namespace DeckSensorTester
             }
 
             listener.Close();
-            MessageBox.Show("BW Listener Close");
+            // MessageBox.Show("BW Listener Close");
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)

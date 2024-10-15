@@ -43,7 +43,6 @@
             radioBtnPreset3 = new RadioButton();
             radioBtnPreset2 = new RadioButton();
             radioBtnPreset1 = new RadioButton();
-            lblZoneStatus = new Label();
             txtBoxSentData = new TextBox();
             txtBoxRecveivedData = new TextBox();
             lblSentData = new Label();
@@ -223,16 +222,6 @@
             radioBtnPreset1.Text = "Preset 1";
             radioBtnPreset1.UseVisualStyleBackColor = true;
             // 
-            // lblZoneStatus
-            // 
-            lblZoneStatus.AutoSize = true;
-            lblZoneStatus.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblZoneStatus.Location = new Point(586, 279);
-            lblZoneStatus.Name = "lblZoneStatus";
-            lblZoneStatus.Size = new Size(103, 23);
-            lblZoneStatus.TabIndex = 3;
-            lblZoneStatus.Text = "Zone Status";
-            // 
             // txtBoxSentData
             // 
             txtBoxSentData.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -261,9 +250,9 @@
             lblSentData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSentData.Location = new Point(31, 294);
             lblSentData.Name = "lblSentData";
-            lblSentData.Size = new Size(87, 23);
+            lblSentData.Size = new Size(141, 23);
             lblSentData.TabIndex = 6;
-            lblSentData.Text = "Sent Data";
+            lblSentData.Text = "Sent Data in Hex";
             // 
             // lblReceivedData
             // 
@@ -271,9 +260,9 @@
             lblReceivedData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblReceivedData.Location = new Point(31, 560);
             lblReceivedData.Name = "lblReceivedData";
-            lblReceivedData.Size = new Size(124, 23);
+            lblReceivedData.Size = new Size(178, 23);
             lblReceivedData.TabIndex = 7;
-            lblReceivedData.Text = "Received Data";
+            lblReceivedData.Text = "Received Data in Hex";
             // 
             // grpBoxZoneStatus
             // 
@@ -373,7 +362,6 @@
             Controls.Add(lblSentData);
             Controls.Add(txtBoxRecveivedData);
             Controls.Add(txtBoxSentData);
-            Controls.Add(lblZoneStatus);
             Controls.Add(groupBoxPresets);
             Controls.Add(groupBoxCommSettings);
             Name = "Form1";
@@ -403,7 +391,6 @@
         private RadioButton radioBtnPreset4;
         private RadioButton radioBtnPreset3;
         private RadioButton radioBtnPreset2;
-        private Label lblZoneStatus;
         private TextBox txtBoxSentData;
         private TextBox txtBoxRecveivedData;
         private Label lblSentData;
