@@ -31,7 +31,6 @@ namespace DeckSensorTester
             txtBoxListenPort.Text = udpListenPort.ToString();
             txtBoxSendPort.Text = udpSendPort.ToString();
             txtBoxUnitId.Text = unitId.ToString();
-            radioBtnPreset1.Checked = true;
         }
 
         private void btnListen_Click(object sender, EventArgs e)
@@ -40,11 +39,15 @@ namespace DeckSensorTester
 
             if (isListening)
             {
-                isListening = false;
+                byte[] dataToSend = { 0x54, 0x66, 0x65, 0x00 };
+                int byteLength = dataToSend.Length;
+                                isListening = false;
                 btnListen.Text = "Start Listening";
                 btnListen.BackColor = Color.LightGray;
                 backgroundWorker1.CancelAsync();
-                // MessageBox.Show("Worker Stopping");
+                btnGetPresets.Enabled = false;
+                btnGetZoneStatus.Enabled = false;
+                udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
             }
 
             else
@@ -71,6 +74,8 @@ namespace DeckSensorTester
                         backgroundWorker1.RunWorkerAsync();
                         btnListen.Text = "Stop Listening";
                         btnListen.BackColor = Color.LightGreen;
+                        btnGetPresets.Enabled = true;
+                        btnGetZoneStatus.Enabled = true;    
                         // MessageBox.Show("Worker Staring");
                     }
                 }
@@ -282,12 +287,13 @@ namespace DeckSensorTester
             }
 
             listener.Close();
-            // MessageBox.Show("BW Listener Close");
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             isListening = false;
+            btnGetPresets.Enabled = false;
+            btnGetZoneStatus.Enabled = false;
         }
 
         private void radioBtnPreset1_CheckedChanged(object sender, EventArgs e)
@@ -316,7 +322,7 @@ namespace DeckSensorTester
 
         private void radioBtnPreset4_CheckedChanged(object sender, EventArgs e)
         {
-            if(radioBtnPreset4.Checked && currentPreset != 4)
+            if (radioBtnPreset4.Checked && currentPreset != 4)
             {
                 sendPreset(4);
             }
@@ -336,7 +342,7 @@ namespace DeckSensorTester
                     udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
                     updateSentData(dataToSend);
                     radioBtnPreset1.Checked = true;
-                    
+
                     break;
 
                 case 2:
@@ -363,6 +369,30 @@ namespace DeckSensorTester
                 default:
                     break;
             }
+        }
+
+        private void btnGetPresets_Click(object sender, EventArgs e)
+        {
+            byte[] dataToSend = { 0x54, 0x66, 0x65, 0x00 };
+            int byteLength = dataToSend.Length;
+            udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+        }
+
+        private void btnGetZoneStatus_Click(object sender, EventArgs e)
+        {
+            byte[] dataToSend = { 0x54, 0x66, 0x66, 0x3F };
+            int byteLength = dataToSend.Length;
+            udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+        }
+
+        private void btnClearSentData_Click(object sender, EventArgs e)
+        {
+            txtBoxSentData.Text = "";
+        }
+
+        private void btnClearReceivedData_Click(object sender, EventArgs e)
+        {
+            txtBoxRecveivedData.Text = "";
         }
     }
 }

@@ -55,6 +55,10 @@
             btnZoneStat2 = new Button();
             btnZoneStat1 = new Button();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            btnGetPresets = new Button();
+            btnGetZoneStatus = new Button();
+            btnClearSentData = new Button();
+            btnClearReceivedData = new Button();
             groupBoxCommSettings.SuspendLayout();
             groupBoxPresets.SuspendLayout();
             grpBoxZoneStatus.SuspendLayout();
@@ -240,7 +244,7 @@
             // txtBoxRecveivedData
             // 
             txtBoxRecveivedData.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBoxRecveivedData.Location = new Point(31, 586);
+            txtBoxRecveivedData.Location = new Point(31, 597);
             txtBoxRecveivedData.Multiline = true;
             txtBoxRecveivedData.Name = "txtBoxRecveivedData";
             txtBoxRecveivedData.ReadOnly = true;
@@ -262,7 +266,7 @@
             // 
             lblReceivedData.AutoSize = true;
             lblReceivedData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblReceivedData.Location = new Point(31, 560);
+            lblReceivedData.Location = new Point(31, 568);
             lblReceivedData.Name = "lblReceivedData";
             lblReceivedData.Size = new Size(178, 23);
             lblReceivedData.TabIndex = 7;
@@ -356,11 +360,61 @@
             backgroundWorker1.DoWork += backgroundWorker1_DoWork;
             backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
+            // btnGetPresets
+            // 
+            btnGetPresets.Enabled = false;
+            btnGetPresets.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGetPresets.Location = new Point(389, 266);
+            btnGetPresets.Name = "btnGetPresets";
+            btnGetPresets.Size = new Size(123, 40);
+            btnGetPresets.TabIndex = 9;
+            btnGetPresets.Text = "Quary Presets";
+            btnGetPresets.UseVisualStyleBackColor = true;
+            btnGetPresets.Click += btnGetPresets_Click;
+            // 
+            // btnGetZoneStatus
+            // 
+            btnGetZoneStatus.Enabled = false;
+            btnGetZoneStatus.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGetZoneStatus.Location = new Point(543, 266);
+            btnGetZoneStatus.Name = "btnGetZoneStatus";
+            btnGetZoneStatus.Size = new Size(249, 40);
+            btnGetZoneStatus.TabIndex = 10;
+            btnGetZoneStatus.Text = "Quary Zone Status";
+            btnGetZoneStatus.UseVisualStyleBackColor = true;
+            btnGetZoneStatus.Click += btnGetZoneStatus_Click;
+            // 
+            // btnClearSentData
+            // 
+            btnClearSentData.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClearSentData.Location = new Point(31, 264);
+            btnClearSentData.Name = "btnClearSentData";
+            btnClearSentData.Size = new Size(135, 32);
+            btnClearSentData.TabIndex = 11;
+            btnClearSentData.Text = "Clear Sent Data";
+            btnClearSentData.UseVisualStyleBackColor = true;
+            btnClearSentData.Click += btnClearSentData_Click;
+            // 
+            // btnClearReceivedData
+            // 
+            btnClearReceivedData.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClearReceivedData.Location = new Point(31, 533);
+            btnClearReceivedData.Name = "btnClearReceivedData";
+            btnClearReceivedData.Size = new Size(178, 32);
+            btnClearReceivedData.TabIndex = 12;
+            btnClearReceivedData.Text = "Clear Received Data";
+            btnClearReceivedData.UseVisualStyleBackColor = true;
+            btnClearReceivedData.Click += btnClearReceivedData_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(820, 813);
+            ClientSize = new Size(820, 829);
+            Controls.Add(btnClearReceivedData);
+            Controls.Add(btnClearSentData);
+            Controls.Add(btnGetZoneStatus);
+            Controls.Add(btnGetPresets);
             Controls.Add(grpBoxZoneStatus);
             Controls.Add(lblReceivedData);
             Controls.Add(lblSentData);
@@ -409,5 +463,9 @@
         private TextBox txtBoxUnitId;
         private Label lblUnitId;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button btnGetPresets;
+        private Button btnGetZoneStatus;
+        private Button btnClearSentData;
+        private Button btnClearReceivedData;
     }
 }
