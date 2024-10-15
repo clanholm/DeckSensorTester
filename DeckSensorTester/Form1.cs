@@ -13,7 +13,7 @@ namespace DeckSensorTester
         int unitId = 7;
         string strIpAddress = "10.20.78.181";
         bool isListening = false;
-        IPAddress dsIpAddress;
+        //IPAddress dsIpAddress;
         const int ALARM = 2;
         const int NORMAL = 1;
         const int TROUBLE = 99;
@@ -66,7 +66,7 @@ namespace DeckSensorTester
                         MessageBox.Show("Send Port Value must be between 1 an 65535");
                     }
 
-                    dsIpAddress = IPAddress.Parse(strIpAddress);
+                    //dsIpAddress = IPAddress.Parse(strIpAddress);
 
                     if (!backgroundWorker1.IsBusy)
                     {
@@ -376,6 +376,7 @@ namespace DeckSensorTester
             byte[] dataToSend = { 0x54, 0x66, 0x65, 0x00 };
             int byteLength = dataToSend.Length;
             udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+            updateSentData(dataToSend);
         }
 
         private void btnGetZoneStatus_Click(object sender, EventArgs e)
@@ -383,6 +384,7 @@ namespace DeckSensorTester
             byte[] dataToSend = { 0x54, 0x66, 0x66, 0x3F };
             int byteLength = dataToSend.Length;
             udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+            updateSentData(dataToSend);
         }
 
         private void btnClearSentData_Click(object sender, EventArgs e)
