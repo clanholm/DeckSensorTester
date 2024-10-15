@@ -118,7 +118,7 @@ namespace DeckSensorTester
             if (dataType == 106)
             {
                 int id = dataReceived[5];
-                int zoneNumber = dataReceived[11];
+                int zoneNumber = dataReceived[11]+1;
                 int zoneStat = dataReceived[12];
                 if(unitId == id)
                 {
