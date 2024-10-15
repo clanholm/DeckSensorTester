@@ -256,7 +256,7 @@
             // 
             lblSentData.AutoSize = true;
             lblSentData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSentData.Location = new Point(31, 294);
+            lblSentData.Location = new Point(31, 289);
             lblSentData.Name = "lblSentData";
             lblSentData.Size = new Size(141, 23);
             lblSentData.TabIndex = 6;
@@ -266,7 +266,7 @@
             // 
             lblReceivedData.AutoSize = true;
             lblReceivedData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblReceivedData.Location = new Point(31, 568);
+            lblReceivedData.Location = new Point(31, 563);
             lblReceivedData.Name = "lblReceivedData";
             lblReceivedData.Size = new Size(178, 23);
             lblReceivedData.TabIndex = 7;
@@ -368,7 +368,7 @@
             btnGetPresets.Name = "btnGetPresets";
             btnGetPresets.Size = new Size(123, 40);
             btnGetPresets.TabIndex = 9;
-            btnGetPresets.Text = "Quary Presets";
+            btnGetPresets.Text = "Query Presets";
             btnGetPresets.UseVisualStyleBackColor = true;
             btnGetPresets.Click += btnGetPresets_Click;
             // 
@@ -380,14 +380,14 @@
             btnGetZoneStatus.Name = "btnGetZoneStatus";
             btnGetZoneStatus.Size = new Size(249, 40);
             btnGetZoneStatus.TabIndex = 10;
-            btnGetZoneStatus.Text = "Quary Zone Status";
+            btnGetZoneStatus.Text = "Query Zone Status";
             btnGetZoneStatus.UseVisualStyleBackColor = true;
             btnGetZoneStatus.Click += btnGetZoneStatus_Click;
             // 
             // btnClearSentData
             // 
             btnClearSentData.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClearSentData.Location = new Point(31, 264);
+            btnClearSentData.Location = new Point(178, 285);
             btnClearSentData.Name = "btnClearSentData";
             btnClearSentData.Size = new Size(135, 32);
             btnClearSentData.TabIndex = 11;
@@ -398,7 +398,7 @@
             // btnClearReceivedData
             // 
             btnClearReceivedData.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClearReceivedData.Location = new Point(31, 533);
+            btnClearReceivedData.Location = new Point(215, 559);
             btnClearReceivedData.Name = "btnClearReceivedData";
             btnClearReceivedData.Size = new Size(178, 32);
             btnClearReceivedData.TabIndex = 12;
