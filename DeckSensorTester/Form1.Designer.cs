@@ -59,6 +59,8 @@
             btnGetZoneStatus = new Button();
             btnClearSentData = new Button();
             btnClearReceivedData = new Button();
+            label1 = new Label();
+            label2 = new Label();
             groupBoxCommSettings.SuspendLayout();
             groupBoxPresets.SuspendLayout();
             grpBoxZoneStatus.SuspendLayout();
@@ -233,7 +235,7 @@
             // txtBoxSentData
             // 
             txtBoxSentData.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBoxSentData.Location = new Point(31, 320);
+            txtBoxSentData.Location = new Point(30, 364);
             txtBoxSentData.Multiline = true;
             txtBoxSentData.Name = "txtBoxSentData";
             txtBoxSentData.ReadOnly = true;
@@ -244,7 +246,7 @@
             // txtBoxRecveivedData
             // 
             txtBoxRecveivedData.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBoxRecveivedData.Location = new Point(31, 597);
+            txtBoxRecveivedData.Location = new Point(30, 633);
             txtBoxRecveivedData.Multiline = true;
             txtBoxRecveivedData.Name = "txtBoxRecveivedData";
             txtBoxRecveivedData.ReadOnly = true;
@@ -256,7 +258,7 @@
             // 
             lblSentData.AutoSize = true;
             lblSentData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSentData.Location = new Point(31, 289);
+            lblSentData.Location = new Point(340, 338);
             lblSentData.Name = "lblSentData";
             lblSentData.Size = new Size(141, 23);
             lblSentData.TabIndex = 6;
@@ -266,7 +268,7 @@
             // 
             lblReceivedData.AutoSize = true;
             lblReceivedData.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblReceivedData.Location = new Point(31, 563);
+            lblReceivedData.Location = new Point(319, 607);
             lblReceivedData.Name = "lblReceivedData";
             lblReceivedData.Size = new Size(178, 23);
             lblReceivedData.TabIndex = 7;
@@ -387,7 +389,7 @@
             // btnClearSentData
             // 
             btnClearSentData.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClearSentData.Location = new Point(178, 285);
+            btnClearSentData.Location = new Point(30, 326);
             btnClearSentData.Name = "btnClearSentData";
             btnClearSentData.Size = new Size(135, 32);
             btnClearSentData.TabIndex = 11;
@@ -398,7 +400,7 @@
             // btnClearReceivedData
             // 
             btnClearReceivedData.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClearReceivedData.Location = new Point(215, 559);
+            btnClearReceivedData.Location = new Point(30, 595);
             btnClearReceivedData.Name = "btnClearReceivedData";
             btnClearReceivedData.Size = new Size(178, 32);
             btnClearReceivedData.TabIndex = 12;
@@ -406,11 +408,31 @@
             btnClearReceivedData.UseVisualStyleBackColor = true;
             btnClearReceivedData.Click += btnClearReceivedData_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(47, 261);
+            label1.Name = "label1";
+            label1.Size = new Size(249, 15);
+            label1.TabIndex = 13;
+            label1.Text = "The UDP Listen Port is Deck Sensor Target Port";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(47, 280);
+            label2.Name = "label2";
+            label2.Size = new Size(247, 15);
+            label2.TabIndex = 14;
+            label2.Text = "The UDP Send Port is Deck Sensor Listent Port";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(820, 829);
+            ClientSize = new Size(820, 862);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(btnClearReceivedData);
             Controls.Add(btnClearSentData);
             Controls.Add(btnGetZoneStatus);
@@ -467,5 +489,7 @@
         private Button btnGetZoneStatus;
         private Button btnClearSentData;
         private Button btnClearReceivedData;
+        private Label label1;
+        private Label label2;
     }
 }
