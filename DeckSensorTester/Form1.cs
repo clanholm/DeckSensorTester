@@ -17,6 +17,8 @@ namespace DeckSensorTester
         const int ALARM = 2;
         const int NORMAL = 1;
         const int TROUBLE = 99;
+        int currentPreset = 0;
+        UdpClient udpClient = new UdpClient();
 
         public Form1()
         {
@@ -108,30 +110,30 @@ namespace DeckSensorTester
         {
             int dataLength = dataReceived.Length;
             int dataType = dataReceived[2]; // 0x65(Dec 101)=Preset | 0x6A(Dec 106)=Zone Status
-            
+
             for (int i = 0; i < dataLength; i++)
             {
                 int byteToSend = dataReceived[i];
                 txtBoxRecveivedData.Text += byteToSend.ToString("X2") + " ";
             }
-            
+
             txtBoxRecveivedData.Text += "\r\n";
 
             if (dataType == 106) // Zone Status
             {
                 int id = dataReceived[5];
-                int zoneNumber = dataReceived[11]+1;
+                int zoneNumber = dataReceived[11] + 1;
                 int zoneStat = dataReceived[12];
-                if(unitId == id)
+                if (unitId == id)
                 {
                     updateZoneStatus(zoneNumber, zoneStat);
                 }
             }
-            else if(dataType == 101) // Preset Status
+            else if (dataType == 101) // Preset Status
             {
-                int preset = dataReceived[3] + 1;
-                
-                switch(preset)
+                currentPreset = dataReceived[3] + 1;
+
+                switch (currentPreset)
                 {
                     case 1:
                         radioBtnPreset1.Checked = true;
@@ -155,20 +157,33 @@ namespace DeckSensorTester
             }
         }
 
+        private void updateSentData(byte[] bytesSent)
+        {
+            int dataLength = bytesSent.Length;
+
+            for (int i = 0; i < dataLength; i++)
+            {
+                int byteSent = bytesSent[i];
+                txtBoxSentData.Text += byteSent.ToString("X2") + " ";
+            }
+
+            txtBoxSentData.Text += "\r\n";
+        }
+
         private void updateZoneStatus(int zoneNumber, int zoneStatus)
         {
-            switch(zoneNumber)
+            switch (zoneNumber)
             {
                 case 1:
                     if (zoneStatus == NORMAL)
                     {
                         btnZoneStat1.BackColor = Color.Green;
                     }
-                    else if(zoneStatus == ALARM)
+                    else if (zoneStatus == ALARM)
                     {
                         btnZoneStat1.BackColor = Color.Red;
                     }
-                    else if(zoneStatus == TROUBLE)
+                    else if (zoneStatus == TROUBLE)
                     {
                         btnZoneStat1.BackColor = Color.Violet;
                     }
@@ -273,6 +288,81 @@ namespace DeckSensorTester
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             isListening = false;
+        }
+
+        private void radioBtnPreset1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnPreset1.Checked && currentPreset != 1)
+            {
+                sendPreset(1);
+            }
+        }
+
+        private void radioBtnPreset2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnPreset2.Checked && currentPreset != 2)
+            {
+                sendPreset(2);
+            }
+        }
+
+        private void radioBtnPreset3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnPreset3.Checked && currentPreset != 3)
+            {
+                sendPreset(3);
+            }
+        }
+
+        private void radioBtnPreset4_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioBtnPreset4.Checked && currentPreset != 4)
+            {
+                sendPreset(4);
+            }
+        }
+
+        private void sendPreset(int presetToSend)
+        {
+            Byte[] dataToSend = { 0x54, 0x66, 0x64, 0x00 };
+            int byteLength = 4;
+
+            currentPreset = presetToSend;
+
+            switch (presetToSend)
+            {
+                case 1:
+                    dataToSend[3] = 0x00;
+                    udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+                    updateSentData(dataToSend);
+                    radioBtnPreset1.Checked = true;
+                    
+                    break;
+
+                case 2:
+                    dataToSend[3] = 0x01;
+                    udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+                    updateSentData(dataToSend);
+                    radioBtnPreset2.Checked = true;
+                    break;
+
+                case 3:
+                    dataToSend[3] = 0x02;
+                    udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+                    updateSentData(dataToSend);
+                    radioBtnPreset3.Checked = true;
+                    break;
+
+                case 4:
+                    dataToSend[3] = 0x03;
+                    udpClient.Send(dataToSend, byteLength, strIpAddress, udpSendPort);
+                    updateSentData(dataToSend);
+                    radioBtnPreset4.Checked = true;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

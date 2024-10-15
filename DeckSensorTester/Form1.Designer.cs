@@ -188,6 +188,7 @@
             radioBtnPreset4.TabStop = true;
             radioBtnPreset4.Text = "Preset 4";
             radioBtnPreset4.UseVisualStyleBackColor = true;
+            radioBtnPreset4.CheckedChanged += radioBtnPreset4_CheckedChanged;
             // 
             // radioBtnPreset3
             // 
@@ -199,6 +200,7 @@
             radioBtnPreset3.TabStop = true;
             radioBtnPreset3.Text = "Preset 3";
             radioBtnPreset3.UseVisualStyleBackColor = true;
+            radioBtnPreset3.CheckedChanged += radioBtnPreset3_CheckedChanged;
             // 
             // radioBtnPreset2
             // 
@@ -210,6 +212,7 @@
             radioBtnPreset2.TabStop = true;
             radioBtnPreset2.Text = "Preset 2";
             radioBtnPreset2.UseVisualStyleBackColor = true;
+            radioBtnPreset2.CheckedChanged += radioBtnPreset2_CheckedChanged;
             // 
             // radioBtnPreset1
             // 
@@ -221,6 +224,7 @@
             radioBtnPreset1.TabStop = true;
             radioBtnPreset1.Text = "Preset 1";
             radioBtnPreset1.UseVisualStyleBackColor = true;
+            radioBtnPreset1.CheckedChanged += radioBtnPreset1_CheckedChanged;
             // 
             // txtBoxSentData
             // 
