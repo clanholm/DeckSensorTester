@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text;
+using System.Windows.Forms.VisualStyles;
 
 namespace DeckSensorTester
 {
@@ -13,6 +14,9 @@ namespace DeckSensorTester
         string strIpAddress = "10.20.78.181";
         bool isListening = false;
         IPAddress dsIpAddress;
+        const int ALARM = 2;
+        const int NORMAL = 1;
+        const int TROUBLE = 99;
 
         public Form1()
         {
@@ -110,6 +114,116 @@ namespace DeckSensorTester
             }
             
             txtBoxRecveivedData.Text += "\r\n";
+
+            if (dataType == 106)
+            {
+                int id = dataReceived[5];
+                int zoneNumber = dataReceived[11];
+                int zoneStat = dataReceived[12];
+                if(unitId == id)
+                {
+                    updateZoneStatus(zoneNumber, zoneStat);
+                }
+            }
+        }
+
+        private void updateZoneStatus(int zoneNumber, int zoneStatus)
+        {
+            switch(zoneNumber)
+            {
+                case 1:
+                    if (zoneStatus == NORMAL)
+                    {
+                        btnZoneStat1.BackColor = Color.Green;
+                    }
+                    else if(zoneStatus == ALARM)
+                    {
+                        btnZoneStat1.BackColor = Color.Red;
+                    }
+                    else if(zoneStatus == TROUBLE)
+                    {
+                        btnZoneStat1.BackColor = Color.Violet;
+                    }
+                    break;
+
+                case 2:
+                    if (zoneStatus == NORMAL)
+                    {
+                        btnZoneStat2.BackColor = Color.Green;
+                    }
+                    else if (zoneStatus == ALARM)
+                    {
+                        btnZoneStat2.BackColor = Color.Red;
+                    }
+                    else if (zoneStatus == TROUBLE)
+                    {
+                        btnZoneStat2.BackColor = Color.Violet;
+                    }
+                    break;
+
+                case 3:
+                    if (zoneStatus == NORMAL)
+                    {
+                        btnZoneStat3.BackColor = Color.Green;
+                    }
+                    else if (zoneStatus == ALARM)
+                    {
+                        btnZoneStat3.BackColor = Color.Red;
+                    }
+                    else if (zoneStatus == TROUBLE)
+                    {
+                        btnZoneStat3.BackColor = Color.Violet;
+                    }
+                    break;
+
+                case 4:
+                    if (zoneStatus == NORMAL)
+                    {
+                        btnZoneStat4.BackColor = Color.Green;
+                    }
+                    else if (zoneStatus == ALARM)
+                    {
+                        btnZoneStat4.BackColor = Color.Red;
+                    }
+                    else if (zoneStatus == TROUBLE)
+                    {
+                        btnZoneStat4.BackColor = Color.Violet;
+                    }
+                    break;
+
+                case 5:
+                    if (zoneStatus == NORMAL)
+                    {
+                        btnZoneStat5.BackColor = Color.Green;
+                    }
+                    else if (zoneStatus == ALARM)
+                    {
+                        btnZoneStat5.BackColor = Color.Red;
+                    }
+                    else if (zoneStatus == TROUBLE)
+                    {
+                        btnZoneStat5.BackColor = Color.Violet;
+                    }
+                    break;
+
+                case 6:
+                    if (zoneStatus == NORMAL)
+                    {
+                        btnZoneStat6.BackColor = Color.Green;
+                    }
+                    else if (zoneStatus == ALARM)
+                    {
+                        btnZoneStat6.BackColor = Color.Red;
+                    }
+                    else if (zoneStatus == TROUBLE)
+                    {
+                        btnZoneStat6.BackColor = Color.Violet;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
