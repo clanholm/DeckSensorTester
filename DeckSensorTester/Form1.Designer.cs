@@ -44,7 +44,7 @@
             radioBtnPreset2 = new RadioButton();
             radioBtnPreset1 = new RadioButton();
             txtBoxSentData = new TextBox();
-            txtBoxRecveivedData = new TextBox();
+            txtBoxReceivedData = new TextBox();
             lblSentData = new Label();
             lblReceivedData = new Label();
             grpBoxZoneStatus = new GroupBox();
@@ -243,16 +243,16 @@
             txtBoxSentData.Size = new Size(761, 207);
             txtBoxSentData.TabIndex = 4;
             // 
-            // txtBoxRecveivedData
+            // txtBoxReceivedData
             // 
-            txtBoxRecveivedData.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBoxRecveivedData.Location = new Point(30, 633);
-            txtBoxRecveivedData.Multiline = true;
-            txtBoxRecveivedData.Name = "txtBoxRecveivedData";
-            txtBoxRecveivedData.ReadOnly = true;
-            txtBoxRecveivedData.ScrollBars = ScrollBars.Vertical;
-            txtBoxRecveivedData.Size = new Size(761, 207);
-            txtBoxRecveivedData.TabIndex = 5;
+            txtBoxReceivedData.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBoxReceivedData.Location = new Point(30, 633);
+            txtBoxReceivedData.Multiline = true;
+            txtBoxReceivedData.Name = "txtBoxReceivedData";
+            txtBoxReceivedData.ReadOnly = true;
+            txtBoxReceivedData.ScrollBars = ScrollBars.Vertical;
+            txtBoxReceivedData.Size = new Size(761, 207);
+            txtBoxReceivedData.TabIndex = 5;
             // 
             // lblSentData
             // 
@@ -440,7 +440,7 @@
             Controls.Add(grpBoxZoneStatus);
             Controls.Add(lblReceivedData);
             Controls.Add(lblSentData);
-            Controls.Add(txtBoxRecveivedData);
+            Controls.Add(txtBoxReceivedData);
             Controls.Add(txtBoxSentData);
             Controls.Add(groupBoxPresets);
             Controls.Add(groupBoxCommSettings);
@@ -472,7 +472,7 @@
         private RadioButton radioBtnPreset3;
         private RadioButton radioBtnPreset2;
         private TextBox txtBoxSentData;
-        private TextBox txtBoxRecveivedData;
+        private TextBox txtBoxReceivedData;
         private Label lblSentData;
         private Label lblReceivedData;
         private GroupBox grpBoxZoneStatus;

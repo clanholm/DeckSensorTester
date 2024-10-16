@@ -113,10 +113,10 @@ namespace DeckSensorTester
             for (int i = 0; i < dataLength; i++)
             {
                 int byteToSend = dataReceived[i];
-                txtBoxRecveivedData.Text += byteToSend.ToString("X2") + " ";
+                txtBoxReceivedData.Text += byteToSend.ToString("X2") + " ";
             }
 
-            txtBoxRecveivedData.Text += "\r\n";
+            txtBoxReceivedData.Text += "\r\n";
 
             if (dataType == 106) // Zone Status
             {
@@ -388,7 +388,7 @@ namespace DeckSensorTester
 
         private void btnClearReceivedData_Click(object sender, EventArgs e)
         {
-            txtBoxRecveivedData.Text = "";
+            txtBoxReceivedData.Text = "";
         }
     }
 }
