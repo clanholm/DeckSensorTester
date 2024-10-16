@@ -40,7 +40,7 @@ namespace DeckSensorTester
             {
                 byte[] dataToSend = { 0x54, 0x66, 0x65, 0x00 };
                 int byteLength = dataToSend.Length;
-                                isListening = false;
+                isListening = false;
                 btnListen.Text = "Start Listening";
                 btnListen.BackColor = Color.LightGray;
                 backgroundWorker1.CancelAsync();
@@ -72,7 +72,7 @@ namespace DeckSensorTester
                         btnListen.Text = "Stop Listening";
                         btnListen.BackColor = Color.LightGreen;
                         btnGetPresets.Enabled = true;
-                        btnGetZoneStatus.Enabled = true;    
+                        btnGetZoneStatus.Enabled = true;
                     }
                 }
                 catch (Exception ex)
@@ -84,7 +84,7 @@ namespace DeckSensorTester
 
         private void txtBoxIpAddress_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtBoxListenPort_TextChanged(object sender, EventArgs e)
@@ -389,6 +389,11 @@ namespace DeckSensorTester
         private void btnClearReceivedData_Click(object sender, EventArgs e)
         {
             txtBoxReceivedData.Text = "";
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            backgroundWorker1.CancelAsync();
         }
     }
 }

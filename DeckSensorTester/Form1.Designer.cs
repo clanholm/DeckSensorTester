@@ -446,6 +446,7 @@
             Controls.Add(groupBoxCommSettings);
             Name = "Form1";
             Text = "Deck Sensor Tester";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             groupBoxCommSettings.ResumeLayout(false);
             groupBoxCommSettings.PerformLayout();
